@@ -1,1 +1,109 @@
 Debugging Assignment
+
+*SSAHelloWorld
+
+- Found a bug that the setter for student Id was not printing a different Id for the first two students initialized.
+- Another minor bug was that the print statement at the top of the program was printing out connected to the first print statement for the first student.
+= I corrected these bugs by fixing the setter for student Id with the following code snippet: 
+
+public void setStudentId(int aStudentId) {
+	studentId = aStudentId;
+
+=I fixed the first and second students having the same Id by creating a new instance of Student and setting the student Id for student2 to a different Id with the code below:
+
+Student student2 = new Student(5);
+	student2.setStudentId(5);
+
+=I fixed the first print line from connecting to the other lines by adding a new line at the end of the first print string:
+System.out.printf("The value of x is %d \n", x);
+
+*Dice Game
+
+- Found a bug that the value of TotalDice bring printed was actually 1 more than the correct total of the dice.
+
+= I fixed the bug by changing around the equation for the value of TotalDice to come after the random number was generated for the variable dice1 instead of after and now the correct totals are displayed.  Here is a code snippet of what I fixed:
+
+    while(dice1 !=1){
+	    	dice1 = rnd.nextInt(6)+1;
+	    	totalDice = totalDice + dice1;
+
+*SimpleCraps
+
+- Found a bug that the win/loss totals were not adding up to the correct numbers
+
+= I fixed the bug by adding a loss each time a 7 rolled when rolling for the point number since I mistakenly hadn't put it there:
+
+if (dice == 7) {
+       loss++;
+
+- Found a bug that was printing out an additional "You rolled a number other than 7 or the point number, continue rolling" statement when the game should have ended.
+
+= Fixed the bug by adding an additional boolean gameover is false statement that I had previously thought was unnecessary and the unnecessary statements went away.
+
+int pointNumber = dice; 
+System.out.println("Your Point Number is: " + pointNumber);
+	gameover = false;
+gameover = true;
+
+*RPNCalculator
+
+-Found a bug that there was nothing stopping the user from dividing by 0 which you can't do.
+
+= Added an if statement in the case for division so that it would run the program if the number you are dividing by is not 0 and if it is 0 then it will print out a statement saying you cannot divide by 0 and not carry out the function.
+
+case DIVIDE:
+	if(p2 != 0)
+	    stk.push(p1 / p2);
+	else
+	    return;
+	    System.out.println("Error! Cannot divide by 0");
+	break;
+
+*BankAccount (Assignment 5)
+
+- Found a bug in the transfer method where the accounts were being switched and the money was being transferred into the wrong account.
+
+= I switched the coding in the TransferFrom method to have the bank supplied in the method parameters withdraw rather than deposit. Code snippet below:
+
+ public void transferFrom(Account bank, double x) {
+	if (x <= this.balance) {
+		bank.withdraw(x);
+		deposit(x);
+
+- Another bug in this program was that there was nothing stopping the withdraw or deposit methods from having a negative amount.
+
+= I added additional if statements to ensure that if a negative number is entered for either method, the method will not carry out the desired function.
+
+double deposit(double amount) {
+	if (amount > 0)
+	    balance += amount;
+	else
+	    System.out.println("Cannot deposit a negative amount");
+	    return balance;
+
+double withdraw(double amount) {
+	if(amount > balance || amount < 0) {
+	      System.out.println("Unable to complete the requested withdraw.");
+        } else  
+	      balance -= amount;
+	    }
+	    return balance;
+
+*TheBankStatement
+
+- The type variable we established to be either C for checking or S for savings can be set to any value instead of just being limited to a single character, and just either S or C at this point in time (until a different account type is created)
+
+= I changed the type of the variable type from String to char so only one character can be input/displayed and not words/phrases.
+
+public char type;
+
+public void setType(String type) {
+	if(type == 'S' || type == 'C')
+	    this.type = type;
+	else
+	    return;
+
+
+This is the end of my debugging adventure. :-)
+
+
